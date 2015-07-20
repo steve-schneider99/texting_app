@@ -1,3 +1,18 @@
 <h1>Texting App Index Page</h1>
 
 <p>Texts will go down here</p>
+
+
+<% if @texts.any? %>
+
+  <h3>Texts sent so far</h3>
+  <ul>
+    <%= @texts.each do |text| %>
+      <li><%= text.to_number %></li>
+      <li><%= text.from_number %></li>
+      <li><%= text.body %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No texts have been sent/received yet.</p>
+<% end %>
