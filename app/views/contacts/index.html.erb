@@ -1,1 +1,18 @@
-Contacts Index Page
+<h2>Contacts Index Page</h2>
+
+<%= link_to "Text List", texts_path %>
+
+<% if @contacts.any? %>
+
+  <h3>Contacts sent so far</h3>
+  <ul>
+    <% @contacts.each do |contact| %>
+      <li><%= link_to contact.name, contact_path(contact) %></li>
+      <li><%= contact.number %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No contacts have been created!</p>
+<% end %>
+
+<%= link_to "Add a contact", new_contact_path %>

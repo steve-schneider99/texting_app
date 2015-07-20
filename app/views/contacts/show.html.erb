@@ -1,0 +1,16 @@
+<h3>Contact info for <%= @contact.name %></h3>
+
+<p><%= @contact.number %></p>
+
+<h3>You wanna send this person a text? Huh? Yeah?</h3>
+
+<h1>Text Creation Form</h1>
+
+<%= form_for @text do |f| %>
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+  <%= f.hidden_field :to_number, :value => @contact.number %>
+  <%= f.submit "Send Text" %>
+<% end %>
+
+<%= link_to "Back To Contacts List", contacts_path %>

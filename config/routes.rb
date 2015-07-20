@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   resources :texts
-  resources :contacts
+  resources :inbounds
+  resources :contacts do
+    resources :texts
+  end
+
   root to: 'texts#index'
+
 end

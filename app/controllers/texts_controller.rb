@@ -3,6 +3,9 @@ class TextsController < ApplicationController
 
   def index
     @texts = Text.all
+    message_body = params["Body"]
+    from_number = params["From"]
+
   end
 
   def new
@@ -15,12 +18,15 @@ class TextsController < ApplicationController
     twilio_sid = "ACae2ec4ec4b2f7d01251c2be94964ff7e"
     twilio_token = "e67d005d04108d0e09e707a1f6ec6f63"
     twilio_phone_number ="+15033749324"
+    to_number = "+1" + @text.to_number
+    body = @text.body
+    binding.pry
 
     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
     @twilio_client.account.sms.messages.create(
     from: twilio_phone_number,
-    to: "+1#{@text.to_number}",
-    body: "#{@text.body}"
+    to: to_number,
+    body: body
     )
     redirect_to texts_path
   end
