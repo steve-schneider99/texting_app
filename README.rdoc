@@ -5,23 +5,11 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+1. make sure to install ngrok gem.
+2. Start ngrok when app is running: ngrok 3000
+3. Navigate to url in terminal to open server
+4. Twilio message url on website should be pointing to inbound for receiving.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 
 
 Please feel free to use a different markup language if you do not plan to run
