@@ -17,6 +17,7 @@ gem 'simple_form'
 gem 'momentjs-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master'
 gem "will_paginate"
+gem 'twilio-ruby'
 
 group :development do
   gem 'byebug'

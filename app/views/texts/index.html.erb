@@ -7,12 +7,15 @@
 
   <h3>Texts sent so far</h3>
   <ul>
-    <%= @texts.each do |text| %>
+    <% @texts.each do |text| %>
       <li><%= text.to_number %></li>
-      <li><%= text.from_number %></li>
       <li><%= text.body %></li>
     <% end %>
   </ul>
 <% else %>
   <p>No texts have been sent/received yet.</p>
 <% end %>
+
+<%= link_to "Send a Text", new_text_path %>
+<br>
+<%= link_to "Add a contact", new_contact_path %>
