@@ -7,3 +7,20 @@
   <%= f.text_area :body %>
   <%= f.submit "Send Text" %>
 <% end %>
+
+<br>
+
+<hr>
+
+<br>
+
+<%= form_for @text do |f| %>
+  <% @contacts.each do |contact| %>
+    <input type="checkbox" name=<%= contact.id %> value=<%= contact.number %>><%= contact.name %>
+    <br>
+  <% end %>
+  <%= f.label :body %>
+  <%= f.text_field :body %>
+  <br>
+  <%= f.submit "Send Texts" %>
+<% end %>

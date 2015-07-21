@@ -10,25 +10,40 @@ class TextsController < ApplicationController
 
   def new
     @text = Text.new
+    @contacts = Contact.all
   end
 
 
   def create
-    @text = Text.create(number_to_send_to)
     twilio_sid = "ACae2ec4ec4b2f7d01251c2be94964ff7e"
     twilio_token = "e67d005d04108d0e09e707a1f6ec6f63"
     twilio_phone_number ="+15033749324"
-    to_number = "+1" + @text.to_number
-    body = @text.body
-    binding.pry
-
+    all_messages = []
     @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
-    @twilio_client.account.sms.messages.create(
-    from: twilio_phone_number,
-    to: to_number,
-    body: body
-    )
+
+    messages = messages_params(params)
+    messages.each do |key, value|
+      @twilio_client.account.sms.messages.create(
+      from: twilio_phone_number,
+      to: value,
+      body: params[:text].first.at(1)
+      )
+      text = Text.create(number_to_send_to)
+      to_number = "+1" + value
+      body = params[:text].first.at(1)
+    end
+    #
+    # @text = Text.create(number_to_send_to)
+    # to_number = "+1" + @text.to_number
+    # body = @text.body
+
     redirect_to texts_path
+  end
+
+  def messages_params(params)
+    @messages = params.flatten.slice(4..(params.flatten.length - 9))
+    @messages = Hash[*@messages]
+    return @messages
   end
 
   # def send_text_message
